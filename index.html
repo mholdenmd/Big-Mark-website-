@@ -6,7 +6,7 @@
 <title>Big Mark Pressure Washing | Henry County, GA</title>
 <meta name="description" content="Veteran-owned, Black-owned, licensed and insured pressure washing serving Henry County, Clayton County, Fayetteville, Conyers, Stockbridge and Forest Park, GA.">
 <link rel="icon" type="image/png" href="images/logo.png">
-<link rel="stylesheet" href="css/styles.css?v=11">
+<link rel="stylesheet" href="css/styles.css?v=13">
 </head>
 <body>
 
@@ -30,6 +30,12 @@
   <symbol id="icon-droplet" viewBox="0 0 24 24" fill="currentColor" stroke="none">
     <path d="M12 2s7 8.2 7 13a7 7 0 1 1-14 0c0-4.8 7-13 7-13z"/>
   </symbol>
+  <symbol id="icon-plus" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+    <path d="M12 5v14M5 12h14" stroke-linecap="round"/>
+  </symbol>
+  <symbol id="icon-check" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5">
+    <path d="M5 13l4.5 4.5L19 8" stroke-linecap="round" stroke-linejoin="round"/>
+  </symbol>
 </svg>
 
 <header class="site-header">
@@ -44,6 +50,7 @@
       <a href="#gallery">Gallery</a>
       <a href="#about">About</a>
       <a href="#areas">Service Area</a>
+      <a href="#faq">FAQ</a>
       <a href="tel:16788349384" class="nav-phone">📞 678-834-9384</a>
       <a href="#contact" class="nav-cta">Get a Free Quote</a>
     </nav>
@@ -197,7 +204,70 @@
     </div>
   </section>
 
-  <section id="contact" class="section contact-section">
+  <section id="faq" class="section">
+    <div class="container">
+      <h2 class="reveal">Frequently Asked Questions</h2>
+      <p class="section-sub reveal">Got questions? Here are the ones we hear most.</p>
+      <div class="faq-list reveal">
+        <div class="faq-item">
+          <button class="faq-question" aria-expanded="false">
+            <span>Is pressure washing safe for my home?</span>
+            <svg class="faq-icon" viewBox="0 0 24 24"><use href="#icon-plus"/></svg>
+          </button>
+          <div class="faq-answer"><div class="faq-answer-inner">
+            <p>Yes &mdash; when it's done right. We use soft-washing (low pressure plus the right cleaning solution) on delicate surfaces like siding and roofing, and reserve higher pressure for tougher surfaces like concrete and brick. The right method depends on the surface, and we choose accordingly.</p>
+          </div></div>
+        </div>
+        <div class="faq-item">
+          <button class="faq-question" aria-expanded="false">
+            <span>How often should I have my property pressure washed?</span>
+            <svg class="faq-icon" viewBox="0 0 24 24"><use href="#icon-plus"/></svg>
+          </button>
+          <div class="faq-answer"><div class="faq-answer-inner">
+            <p>Most homes benefit from a full exterior wash once a year. Driveways, walkways, and other high-traffic or shaded concrete areas can build up grime faster and may need attention more often. If you're not sure what your property needs, we're happy to take a look and give you an honest recommendation.</p>
+          </div></div>
+        </div>
+        <div class="faq-item">
+          <button class="faq-question" aria-expanded="false">
+            <span>Are you licensed and insured?</span>
+            <svg class="faq-icon" viewBox="0 0 24 24"><use href="#icon-plus"/></svg>
+          </button>
+          <div class="faq-answer"><div class="faq-answer-inner">
+            <p>Yes, Big Mark Pressure Washing is fully licensed and insured. We're also proudly veteran-owned and Black-owned, so you can feel confident having us on your property.</p>
+          </div></div>
+        </div>
+        <div class="faq-item">
+          <button class="faq-question" aria-expanded="false">
+            <span>Do I need to be home during the service?</span>
+            <svg class="faq-icon" viewBox="0 0 24 24"><use href="#icon-plus"/></svg>
+          </button>
+          <div class="faq-answer"><div class="faq-answer-inner">
+            <p>Not at all. As long as we have access to the areas being cleaned and an exterior water supply, we can complete the job while you're away. We'll follow up once we're done.</p>
+          </div></div>
+        </div>
+        <div class="faq-item">
+          <button class="faq-question" aria-expanded="false">
+            <span>What areas do you serve?</span>
+            <svg class="faq-icon" viewBox="0 0 24 24"><use href="#icon-plus"/></svg>
+          </button>
+          <div class="faq-answer"><div class="faq-answer-inner">
+            <p>We proudly serve Henry County, Clayton County, Fayetteville, Conyers, Stockbridge, and Forest Park. Not sure if you're in range? Just reach out &mdash; we're happy to check.</p>
+          </div></div>
+        </div>
+        <div class="faq-item">
+          <button class="faq-question" aria-expanded="false">
+            <span>How do I get a quote?</span>
+            <svg class="faq-icon" viewBox="0 0 24 24"><use href="#icon-plus"/></svg>
+          </button>
+          <div class="faq-answer"><div class="faq-answer-inner">
+            <p>Fill out the form below or give us a call at <a href="tel:16788349384">678-834-9384</a> with a few details about your property, and we'll get back to you promptly with a free quote.</p>
+          </div></div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section id="contact" class="section section-alt contact-section">
     <div class="container contact-inner">
       <div class="contact-info reveal">
         <h2>Get Your Free Quote</h2>
@@ -210,35 +280,47 @@
         </div>
       </div>
 
-      <form class="contact-form reveal" action="https://formspree.io/f/xkodrwvv" method="POST">
-        <label for="name">Full Name</label>
-        <input type="text" id="name" name="name" placeholder="First and last name" required>
+      <div class="contact-form-wrap reveal">
+        <form class="contact-form" id="contact-form" action="https://formspree.io/f/xkodrwvv" method="POST">
+          <label for="name">Full Name</label>
+          <input type="text" id="name" name="name" placeholder="First and last name" required>
 
-        <label for="phone">Phone Number</label>
-        <input type="tel" id="phone" name="phone" required>
+          <label for="phone">Phone Number</label>
+          <input type="tel" id="phone" name="phone" required>
 
-        <label for="email">Email</label>
-        <input type="email" id="email" name="email" required>
+          <label for="email">Email</label>
+          <input type="email" id="email" name="email" required>
 
-        <label for="address">Address</label>
-        <input type="text" id="address" name="address" placeholder="Property address" required>
+          <label for="address">Address</label>
+          <input type="text" id="address" name="address" placeholder="Property address" required>
 
-        <label for="service">Service Interested In</label>
-        <select id="service" name="service">
-          <option value="House Washing">House Washing</option>
-          <option value="Driveway Cleaning">Driveway Cleaning</option>
-          <option value="Concrete Cleaning">Concrete Cleaning</option>
-          <option value="Roof Cleaning">Roof Cleaning</option>
-          <option value="Deck Cleaning">Deck Cleaning</option>
-          <option value="Fence Cleaning">Fence Cleaning</option>
-          <option value="Commercial Washing">Commercial Washing</option>
-          <option value="Other">Other</option>
-        </select>
+          <label for="service">Service Interested In</label>
+          <select id="service" name="service">
+            <option value="House Washing">House Washing</option>
+            <option value="Driveway Cleaning">Driveway Cleaning</option>
+            <option value="Concrete Cleaning">Concrete Cleaning</option>
+            <option value="Roof Cleaning">Roof Cleaning</option>
+            <option value="Deck Cleaning">Deck Cleaning</option>
+            <option value="Fence Cleaning">Fence Cleaning</option>
+            <option value="Commercial Washing">Commercial Washing</option>
+            <option value="Other">Other</option>
+          </select>
 
-        <input type="text" name="_gotcha" style="display:none" tabindex="-1" autocomplete="off">
+          <input type="text" name="_gotcha" style="display:none" tabindex="-1" autocomplete="off">
 
-        <button type="submit" class="btn btn-primary">Send Message</button>
-      </form>
+          <button type="submit" class="btn btn-primary">Send Message</button>
+          <p class="form-error" id="form-error" hidden>Something went wrong sending your message. Please call us at <a href="tel:16788349384">678-834-9384</a> or email <a href="mailto:bigmarkPW@gmail.com">bigmarkPW@gmail.com</a> directly.</p>
+        </form>
+
+        <div class="form-success" id="form-success" hidden>
+          <div class="form-success-icon">
+            <svg viewBox="0 0 24 24"><use href="#icon-check"/></svg>
+          </div>
+          <h3>Message Sent!</h3>
+          <p>Thanks for reaching out &mdash; we'll get back to you shortly to schedule your free quote.</p>
+          <button type="button" class="form-success-reset" id="form-reset-btn">Send another message</button>
+        </div>
+      </div>
     </div>
   </section>
 
@@ -263,6 +345,11 @@
     <p class="footer-copy">&copy; <span id="year"></span> Big Mark Pressure Washing. All rights reserved.</p>
   </div>
 </footer>
+
+<div class="mobile-cta-bar">
+  <a href="tel:16788349384" class="mobile-cta-btn mobile-cta-call">📞 Call Now</a>
+  <a href="#contact" class="mobile-cta-btn mobile-cta-quote">Get a Quote</a>
+</div>
 
 <script src="js/script.js"></script>
 </body>
