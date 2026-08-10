@@ -426,41 +426,132 @@ p { margin: 0 0 16px; }
 .bubble-title { font-weight: 800; font-size: 0.92rem; margin-bottom: 4px; }
 .bubble-blurb { font-size: 0.75rem; color: rgba(255, 255, 255, 0.92); line-height: 1.3; }
 
-/* Gallery */
-.gallery-grid { grid-template-columns: repeat(auto-fit, minmax(240px, 1fr)); }
+/* Before/After comparison sliders */
+.compare-grid { grid-template-columns: repeat(auto-fit, minmax(260px, 1fr)); }
 
-.gallery-item {
+.compare {
   position: relative;
-  border: none;
-  padding: 0;
+  aspect-ratio: 755 / 1007;
   border-radius: var(--radius);
   overflow: hidden;
-  cursor: pointer;
   box-shadow: var(--shadow);
   background: var(--navy);
+  touch-action: pan-y;
 }
 
-.gallery-item img {
+.compare-after,
+.compare-before-wrap {
+  position: absolute;
+  inset: 0;
+}
+
+.compare-after img,
+.compare-before-wrap img {
+  position: absolute;
+  inset: 0;
   width: 100%;
-  height: 220px;
+  height: 100%;
   object-fit: cover;
-  transition: transform 0.25s ease;
+  -webkit-user-drag: none;
+  user-select: none;
 }
 
-.gallery-item:hover img { transform: scale(1.05); }
+.compare-before-wrap {
+  clip-path: inset(0 calc(100% - var(--pos, 50%)) 0 0);
+}
 
-.gallery-caption {
+.compare-handle {
+  position: absolute;
+  top: 0;
+  bottom: 0;
+  left: var(--pos, 50%);
+  width: 3px;
+  background: var(--white);
+  transform: translateX(-50%);
+  pointer-events: none;
+  box-shadow: 0 0 0 3px rgba(255, 255, 255, 0.25);
+}
+
+.compare-handle span {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  width: 40px;
+  height: 40px;
+  border-radius: 50%;
+  background: var(--white);
+  color: var(--blue);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 1.1rem;
+  font-weight: 700;
+  box-shadow: var(--shadow);
+}
+
+.compare-range {
+  position: absolute;
+  inset: 0;
+  width: 100%;
+  height: 100%;
+  margin: 0;
+  opacity: 0;
+  cursor: ew-resize;
+  -webkit-appearance: none;
+  appearance: none;
+}
+
+.compare-range::-webkit-slider-thumb {
+  -webkit-appearance: none;
+  width: 1px;
+  height: 1px;
+  opacity: 0;
+}
+
+.compare-range::-moz-range-thumb {
+  width: 1px;
+  height: 1px;
+  opacity: 0;
+  border: none;
+}
+
+.compare-range::-moz-range-track {
+  width: 100%;
+  height: 100%;
+  background: transparent;
+  border: none;
+}
+
+.compare-caption {
   position: absolute;
   bottom: 0;
   left: 0;
   right: 0;
-  background: linear-gradient(0deg, rgba(15,36,56,0.85), transparent);
+  background: linear-gradient(0deg, rgba(15, 36, 56, 0.85), transparent);
   color: var(--white);
   padding: 24px 14px 10px;
   font-weight: 700;
   text-align: left;
   font-size: 0.95rem;
+  pointer-events: none;
 }
+
+/* Scroll-reveal */
+.reveal {
+  opacity: 0;
+  transform: translateY(28px);
+  transition: opacity 0.6s ease, transform 0.6s ease;
+}
+
+.reveal.in-view {
+  opacity: 1;
+  transform: translateY(0);
+}
+
+.compare-grid .compare:nth-child(2) { transition-delay: 0.08s; }
+.compare-grid .compare:nth-child(3) { transition-delay: 0.16s; }
+.compare-grid .compare:nth-child(4) { transition-delay: 0.24s; }
 
 /* About */
 .about-inner { max-width: 760px; }
@@ -594,38 +685,6 @@ p { margin: 0 0 16px; }
 
 .footer-copy { font-size: 0.85rem; color: #7f95a6; margin: 0; }
 
-/* Lightbox */
-.lightbox {
-  display: none;
-  position: fixed;
-  inset: 0;
-  background: rgba(10, 24, 38, 0.92);
-  z-index: 1000;
-  align-items: center;
-  justify-content: center;
-  padding: 32px;
-}
-
-.lightbox.open { display: flex; }
-
-.lightbox img {
-  max-width: 100%;
-  max-height: 90vh;
-  border-radius: 8px;
-}
-
-.lightbox-close {
-  position: absolute;
-  top: 20px;
-  right: 28px;
-  background: none;
-  border: none;
-  color: var(--white);
-  font-size: 2.5rem;
-  cursor: pointer;
-  line-height: 1;
-}
-
 /* Responsive */
 @media (max-width: 860px) {
   .contact-inner { grid-template-columns: 1fr; }
@@ -662,4 +721,5 @@ p { margin: 0 0 16px; }
 @media (prefers-reduced-motion: reduce) {
   .bubble { animation: none; }
   .drop, .spray-arc, .rising-bubble { animation: none; }
+  .reveal { opacity: 1; transform: none; transition: none; }
 }
