@@ -24,6 +24,65 @@ document.querySelectorAll('.compare').forEach(compare => {
   update();
 });
 
+// FAQ accordion
+document.querySelectorAll('.faq-item').forEach(item => {
+  const question = item.querySelector('.faq-question');
+  question.addEventListener('click', () => {
+    const isOpen = item.classList.contains('open');
+    document.querySelectorAll('.faq-item.open').forEach(open => {
+      if (open !== item) {
+        open.classList.remove('open');
+        open.querySelector('.faq-question').setAttribute('aria-expanded', 'false');
+      }
+    });
+    item.classList.toggle('open', !isOpen);
+    question.setAttribute('aria-expanded', String(!isOpen));
+  });
+});
+
+// Contact form: submit via AJAX and show a branded success state
+const contactForm = document.getElementById('contact-form');
+if (contactForm) {
+  const submitBtn = contactForm.querySelector('button[type="submit"]');
+  const submitBtnDefaultText = submitBtn.textContent;
+  const formError = document.getElementById('form-error');
+  const formSuccess = document.getElementById('form-success');
+  const resetBtn = document.getElementById('form-reset-btn');
+
+  contactForm.addEventListener('submit', (e) => {
+    e.preventDefault();
+    formError.hidden = true;
+    submitBtn.disabled = true;
+    submitBtn.textContent = 'Sending...';
+
+    fetch(contactForm.action, {
+      method: 'POST',
+      body: new FormData(contactForm),
+      headers: { Accept: 'application/json' }
+    })
+      .then(res => {
+        if (!res.ok) throw new Error('Submission failed');
+        contactForm.hidden = true;
+        formSuccess.hidden = false;
+      })
+      .catch(() => {
+        formError.hidden = false;
+        submitBtn.disabled = false;
+        submitBtn.textContent = submitBtnDefaultText;
+      });
+  });
+
+  if (resetBtn) {
+    resetBtn.addEventListener('click', () => {
+      contactForm.reset();
+      contactForm.hidden = false;
+      formSuccess.hidden = true;
+      submitBtn.disabled = false;
+      submitBtn.textContent = submitBtnDefaultText;
+    });
+  }
+}
+
 // Scroll-reveal animations
 const revealEls = document.querySelectorAll('.reveal');
 if ('IntersectionObserver' in window && revealEls.length) {
