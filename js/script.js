@@ -35,6 +35,9 @@ document.querySelectorAll('.compare').forEach(compare => {
   let dragging = false;
 
   compare.addEventListener('pointerdown', (e) => {
+    // Touch drag on native controls has proven unreliable across mobile
+    // browsers; touch devices use the Before/After toggle buttons instead.
+    if (e.pointerType === 'touch') return;
     dragging = true;
     try { compare.setPointerCapture(e.pointerId); } catch (err) { /* not critical */ }
     setPos(percentFromClientX(e.clientX));
@@ -62,6 +65,15 @@ document.querySelectorAll('.compare').forEach(compare => {
   range.addEventListener('input', () => setPos(Number(range.value)));
 
   setPos(Number(range.value));
+
+  // Mobile fallback: tap Before/After buttons instead of dragging
+  const toggleBtns = compare.querySelectorAll('.compare-toggle-btn');
+  toggleBtns.forEach(btn => {
+    btn.addEventListener('click', () => {
+      setPos(Number(btn.dataset.pos));
+      toggleBtns.forEach(b => b.classList.toggle('active', b === btn));
+    });
+  });
 });
 
 // FAQ accordion
