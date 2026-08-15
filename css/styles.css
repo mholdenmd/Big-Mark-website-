@@ -461,7 +461,9 @@ p { margin: 0 0 16px; }
   overflow: hidden;
   box-shadow: var(--shadow);
   background: var(--navy);
-  touch-action: pan-y;
+  touch-action: none;
+  user-select: none;
+  cursor: ew-resize;
 }
 
 .compare-after,
@@ -522,9 +524,14 @@ p { margin: 0 0 16px; }
   height: 100%;
   margin: 0;
   opacity: 0;
-  cursor: ew-resize;
+  pointer-events: none;
   -webkit-appearance: none;
   appearance: none;
+}
+
+.compare-range:focus-visible {
+  outline: 3px solid var(--blue);
+  outline-offset: -3px;
 }
 
 .compare-range::-webkit-slider-thumb {
