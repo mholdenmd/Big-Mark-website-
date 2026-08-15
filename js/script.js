@@ -15,13 +15,65 @@ mainNav.querySelectorAll('a').forEach(link => {
   });
 });
 
-// Before/after comparison sliders
+// Before/after comparison sliders (custom pointer-based drag, not the
+// native range input's own touch handling, which is unreliable on mobile)
 document.querySelectorAll('.compare').forEach(compare => {
   const range = compare.querySelector('.compare-range');
   if (!range) return;
-  const update = () => compare.style.setProperty('--pos', range.value + '%');
-  range.addEventListener('input', update);
-  update();
+
+  const setPos = (percent) => {
+    const clamped = Math.max(0, Math.min(100, percent));
+    compare.style.setProperty('--pos', clamped + '%');
+    range.value = clamped;
+  };
+
+  const percentFromClientX = (clientX) => {
+    const rect = compare.getBoundingClientRect();
+    return ((clientX - rect.left) / rect.width) * 100;
+  };
+
+  let dragging = false;
+
+  compare.addEventListener('pointerdown', (e) => {
+    // Touch drag on native controls has proven unreliable across mobile
+    // browsers; touch devices use the Before/After toggle buttons instead.
+    if (e.pointerType === 'touch') return;
+    dragging = true;
+    try { compare.setPointerCapture(e.pointerId); } catch (err) { /* not critical */ }
+    setPos(percentFromClientX(e.clientX));
+  });
+
+  compare.addEventListener('pointermove', (e) => {
+    if (!dragging) return;
+    setPos(percentFromClientX(e.clientX));
+  });
+
+  const endDrag = (e) => {
+    if (!dragging) return;
+    dragging = false;
+    try {
+      if (compare.hasPointerCapture(e.pointerId)) {
+        compare.releasePointerCapture(e.pointerId);
+      }
+    } catch (err) { /* not critical */ }
+  };
+
+  compare.addEventListener('pointerup', endDrag);
+  compare.addEventListener('pointercancel', endDrag);
+
+  // Keep keyboard control (arrow keys on the focused range) in sync
+  range.addEventListener('input', () => setPos(Number(range.value)));
+
+  setPos(Number(range.value));
+
+  // Mobile fallback: tap Before/After buttons instead of dragging
+  const toggleBtns = compare.querySelectorAll('.compare-toggle-btn');
+  toggleBtns.forEach(btn => {
+    btn.addEventListener('click', () => {
+      setPos(Number(btn.dataset.pos));
+      toggleBtns.forEach(b => b.classList.toggle('active', b === btn));
+    });
+  });
 });
 
 // FAQ accordion
