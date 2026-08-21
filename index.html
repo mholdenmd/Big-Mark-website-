@@ -6,7 +6,7 @@
 <title>Big Mark Pressure Washing | Henry County, GA</title>
 <meta name="description" content="Veteran-owned, Black-owned, licensed and insured pressure washing serving Henry County, Clayton County, Fayetteville, Conyers, Stockbridge and Forest Park, GA.">
 <link rel="icon" type="image/png" href="images/logo.png">
-<link rel="stylesheet" href="css/styles.css?v=17">
+<link rel="stylesheet" href="css/styles.css?v=22">
 </head>
 <body>
 
@@ -127,18 +127,19 @@
     </div>
     <div class="container">
       <h2 class="reveal">Our Services</h2>
-      <p class="section-sub reveal">From driveways to storefronts, we bring the right pressure &mdash; and the right care &mdash; to every surface. Hover a bubble for a closer look.</p>
+      <p class="section-sub reveal">From driveways to storefronts, we bring the right pressure &mdash; and the right care &mdash; to every surface. Tap a bubble for a closer look.</p>
       <div class="bubble-grid reveal">
+        <div class="bubble-featured" id="bubble-featured"></div>
         <div class="bubble-row">
-          <div class="bubble"><span class="bubble-icon">🏠</span><span class="bubble-title">House Washing</span><span class="bubble-blurb">Soft-wash siding, spotless</span></div>
-          <div class="bubble"><span class="bubble-icon">🚗</span><span class="bubble-title">Driveway Cleaning</span><span class="bubble-blurb">Blast away stains &amp; grime</span></div>
-          <div class="bubble"><span class="bubble-icon">🧱</span><span class="bubble-title">Concrete Cleaning</span><span class="bubble-blurb">Patios &amp; walkways renewed</span></div>
+          <div class="bubble" tabindex="0" role="button" aria-pressed="false"><span class="bubble-icon">🏠</span><span class="bubble-title">House Washing</span><span class="bubble-blurb">Soft-wash siding, spotless</span></div>
+          <div class="bubble" tabindex="0" role="button" aria-pressed="false"><span class="bubble-icon">🚗</span><span class="bubble-title">Driveway Cleaning</span><span class="bubble-blurb">Blast away stains &amp; grime</span></div>
+          <div class="bubble" tabindex="0" role="button" aria-pressed="false"><span class="bubble-icon">🧱</span><span class="bubble-title">Concrete Cleaning</span><span class="bubble-blurb">Patios &amp; walkways renewed</span></div>
         </div>
         <div class="bubble-row">
-          <div class="bubble"><span class="bubble-icon">🏘️</span><span class="bubble-title">Roof Cleaning</span><span class="bubble-blurb">Streak-free, shingle-safe</span></div>
-          <div class="bubble"><span class="bubble-icon">🪵</span><span class="bubble-title">Deck Cleaning</span><span class="bubble-blurb">Wood restored &amp; ready</span></div>
-          <div class="bubble"><span class="bubble-icon">🚧</span><span class="bubble-title">Fence Cleaning</span><span class="bubble-blurb">Mildew-free, top to bottom</span></div>
-          <div class="bubble"><span class="bubble-icon">🏢</span><span class="bubble-title">Commercial Washing</span><span class="bubble-blurb">Storefronts kept spotless</span></div>
+          <div class="bubble" tabindex="0" role="button" aria-pressed="false"><span class="bubble-icon">🏘️</span><span class="bubble-title">Roof Cleaning</span><span class="bubble-blurb">Streak-free, shingle-safe</span></div>
+          <div class="bubble" tabindex="0" role="button" aria-pressed="false"><span class="bubble-icon">🪵</span><span class="bubble-title">Deck Cleaning</span><span class="bubble-blurb">Wood restored &amp; ready</span></div>
+          <div class="bubble" tabindex="0" role="button" aria-pressed="false"><span class="bubble-icon">🚧</span><span class="bubble-title">Fence Cleaning</span><span class="bubble-blurb">Mildew-free, top to bottom</span></div>
+          <div class="bubble" tabindex="0" role="button" aria-pressed="false"><span class="bubble-icon">🏢</span><span class="bubble-title">Commercial Washing</span><span class="bubble-blurb">Storefronts kept spotless</span></div>
         </div>
       </div>
     </div>
@@ -149,6 +150,17 @@
       <h2 class="reveal">Before &amp; After</h2>
       <p class="section-sub reveal">Real results from real jobs around Henry County and beyond.</p>
       <div class="grid compare-grid">
+        <div class="compare reveal" style="--pos:50%">
+          <div class="compare-after"><img src="images/patio-after.jpg" alt="Back patio after pressure washing" loading="lazy"></div>
+          <div class="compare-before-wrap"><img src="images/patio-before.jpg" alt="Back patio before pressure washing" loading="lazy"></div>
+          <div class="compare-handle" aria-hidden="true"><span>&#8596;</span></div>
+          <input type="range" class="compare-range" min="0" max="100" value="50" aria-label="Drag to compare back patio before and after">
+          <div class="compare-toggle" role="group" aria-label="Show back patio before or after">
+            <button type="button" class="compare-toggle-btn active" data-pos="100">Before</button>
+            <button type="button" class="compare-toggle-btn" data-pos="0">After</button>
+          </div>
+          <span class="compare-caption">Back Patio</span>
+        </div>
         <div class="compare reveal" style="--pos:50%">
           <div class="compare-after"><img src="images/driveway-after.jpg" alt="Driveway after pressure washing" loading="lazy"></div>
           <div class="compare-before-wrap"><img src="images/driveway-before.jpg" alt="Driveway before pressure washing" loading="lazy"></div>
@@ -161,15 +173,15 @@
           <span class="compare-caption">Driveway</span>
         </div>
         <div class="compare reveal" style="--pos:50%">
-          <div class="compare-after"><img src="images/sidewalk-after.jpg" alt="Sidewalk after pressure washing" loading="lazy"></div>
-          <div class="compare-before-wrap"><img src="images/sidewalk-before.jpg" alt="Sidewalk before pressure washing" loading="lazy"></div>
+          <div class="compare-after"><img src="images/covered-patio-after.jpg" alt="Covered patio after pressure washing" loading="lazy"></div>
+          <div class="compare-before-wrap"><img src="images/covered-patio-before.jpg" alt="Covered patio before pressure washing" loading="lazy"></div>
           <div class="compare-handle" aria-hidden="true"><span>&#8596;</span></div>
-          <input type="range" class="compare-range" min="0" max="100" value="50" aria-label="Drag to compare sidewalk before and after">
-          <div class="compare-toggle" role="group" aria-label="Show sidewalk before or after">
+          <input type="range" class="compare-range" min="0" max="100" value="50" aria-label="Drag to compare covered patio before and after">
+          <div class="compare-toggle" role="group" aria-label="Show covered patio before or after">
             <button type="button" class="compare-toggle-btn active" data-pos="100">Before</button>
             <button type="button" class="compare-toggle-btn" data-pos="0">After</button>
           </div>
-          <span class="compare-caption">Sidewalk</span>
+          <span class="compare-caption">Covered Patio</span>
         </div>
         <div class="compare reveal" style="--pos:50%">
           <div class="compare-after"><img src="images/siding-after.jpg" alt="House siding after pressure washing" loading="lazy"></div>
@@ -183,15 +195,15 @@
           <span class="compare-caption">House Washing</span>
         </div>
         <div class="compare reveal" style="--pos:50%">
-          <div class="compare-after"><img src="images/walkway-after.jpg" alt="Walkway after pressure washing" loading="lazy"></div>
-          <div class="compare-before-wrap"><img src="images/walkway-before.jpg" alt="Walkway before pressure washing" loading="lazy"></div>
+          <div class="compare-after"><img src="images/sidewalk-after.jpg" alt="Sidewalk after pressure washing" loading="lazy"></div>
+          <div class="compare-before-wrap"><img src="images/sidewalk-before.jpg" alt="Sidewalk before pressure washing" loading="lazy"></div>
           <div class="compare-handle" aria-hidden="true"><span>&#8596;</span></div>
-          <input type="range" class="compare-range" min="0" max="100" value="50" aria-label="Drag to compare walkway before and after">
-          <div class="compare-toggle" role="group" aria-label="Show walkway before or after">
+          <input type="range" class="compare-range" min="0" max="100" value="50" aria-label="Drag to compare sidewalk before and after">
+          <div class="compare-toggle" role="group" aria-label="Show sidewalk before or after">
             <button type="button" class="compare-toggle-btn active" data-pos="100">Before</button>
             <button type="button" class="compare-toggle-btn" data-pos="0">After</button>
           </div>
-          <span class="compare-caption">Walkway</span>
+          <span class="compare-caption">Sidewalk</span>
         </div>
       </div>
     </div>
@@ -318,17 +330,19 @@
           <label for="address">Address</label>
           <input type="text" id="address" name="address" placeholder="Property address" required>
 
-          <label for="service">Service Interested In</label>
-          <select id="service" name="service">
-            <option value="House Washing">House Washing</option>
-            <option value="Driveway Cleaning">Driveway Cleaning</option>
-            <option value="Concrete Cleaning">Concrete Cleaning</option>
-            <option value="Roof Cleaning">Roof Cleaning</option>
-            <option value="Deck Cleaning">Deck Cleaning</option>
-            <option value="Fence Cleaning">Fence Cleaning</option>
-            <option value="Commercial Washing">Commercial Washing</option>
-            <option value="Other">Other</option>
-          </select>
+          <fieldset class="service-fieldset">
+            <legend>Service(s) Interested In</legend>
+            <div class="service-checkboxes">
+              <label class="checkbox-option"><input type="checkbox" name="service" value="House Washing"> House Washing</label>
+              <label class="checkbox-option"><input type="checkbox" name="service" value="Driveway Cleaning"> Driveway Cleaning</label>
+              <label class="checkbox-option"><input type="checkbox" name="service" value="Concrete Cleaning"> Concrete Cleaning</label>
+              <label class="checkbox-option"><input type="checkbox" name="service" value="Roof Cleaning"> Roof Cleaning</label>
+              <label class="checkbox-option"><input type="checkbox" name="service" value="Deck Cleaning"> Deck Cleaning</label>
+              <label class="checkbox-option"><input type="checkbox" name="service" value="Fence Cleaning"> Fence Cleaning</label>
+              <label class="checkbox-option"><input type="checkbox" name="service" value="Commercial Washing"> Commercial Washing</label>
+              <label class="checkbox-option"><input type="checkbox" name="service" value="Other"> Other</label>
+            </div>
+          </fieldset>
 
           <input type="text" name="_gotcha" style="display:none" tabindex="-1" autocomplete="off">
 
@@ -375,6 +389,6 @@
   <a href="#contact" class="mobile-cta-btn mobile-cta-quote">Get a Quote</a>
 </div>
 
-<script src="js/script.js?v=4"></script>
+<script src="js/script.js?v=8"></script>
 </body>
 </html>

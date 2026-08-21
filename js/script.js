@@ -76,6 +76,93 @@ document.querySelectorAll('.compare').forEach(compare => {
   });
 });
 
+// Service bubbles: tap one to feature it (large, at the top). Tap it again
+// and it pops, with a fresh one forming back at its idle spot; tap a
+// different bubble and the featured one pops/reforms at home while the new
+// one pops at its spot and forms large up top.
+const bubbleFeatured = document.getElementById('bubble-featured');
+if (bubbleFeatured) {
+  let selectedBubble = null;
+  const prefersReducedMotion = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+
+  const getAllBubbles = () => Array.from(document.querySelectorAll('.bubble-featured .bubble, .bubble-row .bubble'));
+
+  const restoreBubble = (bubble) => {
+    if (bubble._homeParent) {
+      bubble._homeParent.insertBefore(bubble, bubble._homeNext || null);
+    }
+    bubble.classList.remove('bubble--featured');
+    bubble.setAttribute('aria-pressed', 'false');
+    // Only hide the featured slot if nothing else has been promoted into it
+    // in the meantime (e.g. mid-swap, where a new bubble already moved in).
+    if (!bubbleFeatured.querySelector('.bubble')) {
+      bubbleFeatured.classList.remove('active');
+    }
+  };
+
+  const promoteBubble = (bubble) => {
+    bubble._homeParent = bubble.parentElement;
+    bubble._homeNext = bubble.nextElementSibling;
+    bubbleFeatured.appendChild(bubble);
+    bubbleFeatured.classList.add('active');
+    bubble.classList.add('bubble--featured');
+    bubble.setAttribute('aria-pressed', 'true');
+  };
+
+  // Pop the bubble where it currently sits, run the actual DOM move once
+  // it has visually vanished, then let it form back into being at its new spot.
+  const popThenForm = (bubble, mutate) => {
+    if (prefersReducedMotion) {
+      mutate();
+      return;
+    }
+    const popClass = bubble.classList.contains('bubble--featured') ? 'bubble-pop-featured' : 'bubble-pop';
+
+    bubble.classList.add(popClass);
+    const onPopEnd = (e) => {
+      if (e.target !== bubble || e.animationName.indexOf('bubble-pop') !== 0) return;
+      bubble.removeEventListener('animationend', onPopEnd);
+      bubble.classList.remove(popClass);
+
+      mutate();
+
+      const formClass = bubble.classList.contains('bubble--featured') ? 'bubble-form-featured' : 'bubble-form';
+      bubble.classList.add(formClass);
+      const onFormEnd = (ev) => {
+        if (ev.target !== bubble || ev.animationName.indexOf('bubble-form') !== 0) return;
+        bubble.removeEventListener('animationend', onFormEnd);
+        bubble.classList.remove(formClass);
+      };
+      bubble.addEventListener('animationend', onFormEnd);
+    };
+    bubble.addEventListener('animationend', onPopEnd);
+  };
+
+  const selectBubble = (bubble) => {
+    if (selectedBubble === bubble) {
+      popThenForm(bubble, () => restoreBubble(bubble));
+      selectedBubble = null;
+      return;
+    }
+    if (selectedBubble) {
+      const previous = selectedBubble;
+      popThenForm(previous, () => restoreBubble(previous));
+    }
+    popThenForm(bubble, () => promoteBubble(bubble));
+    selectedBubble = bubble;
+  };
+
+  getAllBubbles().forEach(bubble => {
+    bubble.addEventListener('click', () => selectBubble(bubble));
+    bubble.addEventListener('keydown', (e) => {
+      if (e.key === 'Enter' || e.key === ' ') {
+        e.preventDefault();
+        selectBubble(bubble);
+      }
+    });
+  });
+}
+
 // FAQ accordion
 document.querySelectorAll('.faq-item').forEach(item => {
   const question = item.querySelector('.faq-question');
